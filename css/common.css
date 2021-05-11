@@ -1,0 +1,146 @@
+.banner{
+	background: url(../img/banner.png) no-repeat;
+	background-size: cover;
+	width: 100%;
+	min-height: 337px;
+	margin: 0;
+}
+.top{
+	width: 100%;
+	min-height: 50px;
+}
+.logo{
+	width: 23%;
+	min-height: 50px;
+	float: left;
+}
+.logo img{
+	width: 100%;
+	margin:15px 0 0 10px;
+}
+.an{
+	wid
+}
+.sy{
+	width: 21%;
+	height: 35px;
+	float: left;
+	margin: 15px 0 0 20px;
+	background:rgba(255,255,255,0.1);
+	border: none;
+	border-radius:5px;
+	outline:none;
+	color: #fff;
+	font-size: 14px;
+}
+.sy:hover{
+	background:rgba(255,255,255,0.3);
+}
+/*off/on*/
+.testswitch {
+    position: relative;
+    float: left;
+    width: 18%;
+    margin: 15px 0 0 10px;
+    font-size: 0.6em;
+}
+
+.testswitch-checkbox {
+    display: none;
+}
+
+.testswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 35px;
+}
+
+.testswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    text-align: left;
+}
+
+.testswitch-inner::before,
+.testswitch-inner::after {
+    display: block;
+    float: right;
+    width: 50%;
+    height: 35px;
+    padding: 0;
+    line-height: 1.8em;
+    font-size: 8px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.testswitch-inner::after {
+    content: attr(data-on);
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    color: #666666;
+    line-height: 35px;
+}
+
+.testswitch-inner::before {
+    content: attr(data-off);
+    padding-right: 10px;
+    background-color: #ffffff;
+    color: #666666;
+    text-align: right;
+    line-height: 35px;
+}
+
+.testswitch-switch {
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-left: 8px;
+    margin-right: 8px;
+    background: #5198e2;
+    color: #FFFFFF;
+    line-height: 25px;
+    bottom: 5px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+    text-align: center;
+}
+
+
+.testswitch-checkbox:checked+.testswitch-label .testswitch-inner {
+    margin-left: 0;
+}
+
+.testswitch-checkbox:checked+.testswitch-label .testswitch-switch {
+    right: 0px;
+}
+/*by*/
+.by{
+	width: 100%;
+	min-height: 70px;
+	margin-top: 20%;
+	float: left;
+	text-align: center;
+}
+.by h2{
+	text-align: center;
+	color: #FFFFFF;
+}
+.by span{
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 18px;
+}
+
+
+.input[type=button],input[type=submit],input[type=file],button { 
+cursor: pointer; 
+-webkit-appearance: none; 
+}

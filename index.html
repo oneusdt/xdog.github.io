@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>COLA 官网</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+	<!--common-->
+	<div class="banner">
+		<div class="top">
+			<div class="logo">
+				<img src="img/logo.png"></img>
+			</div>
+			<input id="home" onclick="window.location.href = 'index.html'" type="button" value="首页" class="sy"/>
+			<input id="pool" onclick="window.location.href = 'pool.html'" type="button" value="资金池" class="sy"/>
+			<div class="testswitch">
+				<input class="testswitch-checkbox" id="onoffswitch" type="checkbox" onclick="switchLanguage()" checked>
+				<label class="testswitch-label" for="onoffswitch">
+					<span class="testswitch-inner" data-on="EN" data-off="EN"></span>
+					<span class="testswitch-switch">中</span>
+				</label>
+			</div>
+		</div>
+		<div class="by">
+			<h2>COLASWAP</h2>
+			<span id="subtitle">跨链 DEX 交易平台</span>
+		</div>
+	</div>
+	<!--index-->
+	<div class="index_center">
+		<!-- 需要把图片只弄成背景，文字单独脱离出来，方便切换语言。或者直接再做一张英文的图也行 -->
+		<img src="img/jj_icon.png">
+		<!-- <span id="instruction">COLA 简介</span> -->
+		<span id="para1">
+			随着去中心化金融协议（DeFi）的创新发展，我们看到了货币市场、借贷市场、交易市场、支付网络、保险市场、衍生品市场等在区块链网络逐渐形成。得益于智能合约开放、可编程、可组合的特性，Colaswap 产品应运而生，Colaswap立志实现跨链的dex交易协议，融合eth、heco、bsc、dot几大主链，实现链上交易。流动性作为金融市场最重要的组成部分，DEX的成功与否将直接关系到开放式金融能否革新传统金融，也将影响加密货币成为更普惠的价值存储和支付工具的节奏，Colaswap愿意与生态合作伙伴一起创造健壮且丰富的全球交易金融市场。
+		</span>
+		<span id="para2">
+			在加密货币行业，去中心化社区发展是其必经之路，一个设计良好并能动态演进的代币经济机制，能够促进各方参与者一起贡献打造开放式网络协议和社区生态。COLA，将扮演这个至关重要的角色，Colaswap 也将开启去中心化社区治理之路。为了实现社区治理的机制，Colaswap平台币COLA将直接面向社区进行初始的头矿分享，通过社区自治的方式，推动社区生态的自然发展，并且为dex的流动性做铺垫，我们将于5月上线Colaswap，届时将逐步上线流动性挖矿、链上交易买卖、支持eth、heco、bsc等主链发币并接入交易等功能。我们愿以社区共同推动COLA的价值，将Colaswap不断完善并发展壮大。
+		</span>
+	</div>
+</body>
+
+<script type="text/javascript">
+	// document.addEventListener('plusready', function(){
+	// 	console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。");
+			
+	// });
+	
+	function switchLanguage() {
+		var isChinese = document.getElementById("onoffswitch").checked;
+
+		if (isChinese) {
+			document.title = "COLA 官网";
+			document.getElementById("home").value = "首页";
+			document.getElementById("pool").value = "资金池";
+			document.getElementById("subtitle").innerText = "跨链 DEX 交易平台";
+			// document.getElementById("instruction").innerText = "COLA 简介";
+			document.getElementById("para1").innerText = "随着去中心化金融协议（DeFi）的创新发展，我们看到了货币市场、借贷市场、交易市场、支付网络、保险市场、衍生品市场等在区块链网络逐渐形成。得益于智能合约开放、可编程、可组合的特性，Colaswap 产品应运而生，Colaswap立志实现跨链的dex交易协议，融合eth、heco、bsc、dot几大主链，实现链上交易。流动性作为金融市场最重要的组成部分，DEX的成功与否将直接关系到开放式金融能否革新传统金融，也将影响加密货币成为更普惠的价值存储和支付工具的节奏，Colaswap愿意与生态合作伙伴一起创造健壮且丰富的全球交易金融市场。";
+			document.getElementById("para2").innerText = "在加密货币行业，去中心化社区发展是其必经之路，一个设计良好并能动态演进的代币经济机制，能够促进各方参与者一起贡献打造开放式网络协议和社区生态。COLA，将扮演这个至关重要的角色，Colaswap 也将开启去中心化社区治理之路。为了实现社区治理的机制，Colaswap平台币COLA将直接面向社区进行初始的头矿分享，通过社区自治的方式，推动社区生态的自然发展，并且为dex的流动性做铺垫，我们将于5月上线Colaswap，届时将逐步上线流动性挖矿、链上交易买卖、支持eth、heco、bsc等主链发币并接入交易等功能。我们愿以社区共同推动COLA的价值，将Colaswap不断完善并发展壮大。";
+		} else {
+			document.title = "COLA Home Page";
+			document.getElementById("home").value = "Home";
+			document.getElementById("pool").value = "Pool";
+			document.getElementById("subtitle").innerText = "DEX  with  cross  chain";
+			// document.getElementById("instruction").innerText = "INSTRUCTION";
+			document.getElementById("para1").innerText = "With the innovation and development of decentralized financial agreement (defi), we have seen the gradual formation of the blockchain network in the currency market, lending market, trading market, payment network, insurance market, derivatives market, etc. Thanks to the open, programmable and composable characteristics of intelligent contracts, colaswap products emerge. Colaswap aims to realize cross chain DEX transaction protocol, integrating several main chains of ETH, HECO, BSC and DOT, realize the chain transaction. Liquidity is the most important part of financial market. The success of DEX will directly affect whether open finance can innovate traditional finance. It will also affect the rhythm of cryptocurrency becoming a more inclusive value storage and payment tool, and colaswap is willing to create robust and rich global trading financial markets with eco partners.";
+			document.getElementById("para2").innerText = "In the cryptocurrency industry, the development of decentralized community is the only way to go. A well-designed and dynamic evolution token economic mechanism can promote all participants to contribute to the creation of open network protocol and community ecology. Cola, which will play a crucial role, will also open the road to decentralized community governance. In order to realize the mechanism of community governance, colaswap platform currency Cola will directly share the initial head mines with the community. Through the way of community autonomy, we will promote the natural development of community ecology and pave the way for the liquidity of DEX. We will launch colaswap in April, and then we will gradually go online to dig the ore, trade and sell on the chain, and support ETH HECO BSC and so on for the main chain to issue currency and access to the transaction and other functions. We are willing to promote the value of cola with community, and continuously improve and grow Colaswap.";
+		}
+	}
+</script>
+
+</html>
