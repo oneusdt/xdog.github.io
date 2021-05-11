@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>COLA官网</title>
+    <title>XDOG官网</title>
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/recharge.css" />
     <script src="./clipboard.min.js"></script>
@@ -22,7 +22,7 @@
 			var isChinese = document.getElementById("onoffswitch").checked;
 
 			if (isChinese) {
-				document.title = "COLA 官网";
+				document.title = "XDOG 官网";
 				document.getElementById("home").value = "首页";
 				document.getElementById("pool").value = "资金池";
 				document.getElementById("subtitle").innerText = "跨链 DEX 交易平台";
@@ -30,16 +30,16 @@
 				document.getElementById("my_wallet").innerText = "我的钱包：";
 				document.getElementById("my_team").innerText = "我的团队：";
 				document.getElementById("u_recharged").innerText = "你充值的USDT：";
-				document.getElementById("cola_bought").innerText = "你认购的COLA：";
+				document.getElementById("XDOG_bought").innerText = "你认购的XDOG：";
 				
 				document.getElementById("authorize").value = "授权";
 				document.getElementById("recharge").value = "充值";
 				document.getElementById("refund_usdt").value = "退回USDT";
-				document.getElementById("refund_cola").value = "获取认购COLA";
+				document.getElementById("refund_XDOG").value = "获取认购XDOG";
 				document.getElementById("copy").value = "复制推广链接";
 				document.getElementById("recharge_amount").innerText = "充值金额";
 			} else {
-				document.title = "COLA Home Page";
+				document.title = "XDOG Home Page";
 				document.getElementById("home").value = "Home";
 				document.getElementById("pool").value = "Pool";
 				document.getElementById("subtitle").innerText = "DEX  with  cross  chain";
@@ -47,12 +47,12 @@
 				document.getElementById("my_wallet").innerText = "My Wallet：";
 				document.getElementById("my_team").innerText = "My Teams：";
 				document.getElementById("u_recharged").innerText = "Recharged USDT：";
-				document.getElementById("cola_bought").innerText = "Purchased COLA：";
+				document.getElementById("XDOG_bought").innerText = "Purchased XDOG：";
 				
 				document.getElementById("authorize").value = "Authorize";
 				document.getElementById("recharge").value = "Recharge";
 				document.getElementById("refund_usdt").value = "Refund USDT";
-				document.getElementById("refund_cola").value = "Refund COLA";
+				document.getElementById("refund_XDOG").value = "Refund XDOG";
 				document.getElementById("copy").value = "Copy App Link";
 				document.getElementById("recharge_amount").innerText = "Recharge Amount";
 			}
@@ -81,13 +81,13 @@
 			</div>
 		</div>
 		<div class="by">
-			<h2>COLASWAP</h2>
-			<span id="subtitle">跨链 DEX 交易平台</span>
+			<h2>XDOGSWAP</h2>
+			<span id="subtitle">捐赠XDOG</span>
 		</div>
 	</div>
 	<!--流动性矿池-->
 	<div class="ldx">
-		<div class="cola_usdt_lp">
+		<div class="XDOG_usdt_lp">
 			<h3 id="recharge_amount">充值金额</h3>
 			<input  class="sr" type="number" id="t1x" placeholder="0 USDT">
 			<div class="grey_row">
@@ -109,14 +109,12 @@
 			    <span class="row_item_right" id="my_in_usdttoken">0 USDT</span>
 		    </div>
 			<div class="row">
-		        <span class="row_item_left" id="cola_bought">你认购的COLA：</span>
+		        <span class="row_item_left" id="XDOG_bought">你认购的XDOG：</span>
 			    <span class="row_item_right" id="my_in_swaptoken">未结算</span>
 		    </div>
 		</div>
-		<input id="refund_usdt" type="button" value="退回USDT" class="qg confirmc"/>
-		<input id="refund_cola" type="button" value="获取认购COLA" class="qg confirmd"/>
-		<input type="button" value="复制推广链接" id="copy" class="qg"/>
-		<span class="xs_2" id="selector_link" style="font-size:10px" ></span>		
+		<input id="refund_XDOG" type="button" value="获取认购XDOG" class="qg confirmd"/>
+
 	</div>
 
 </body>
@@ -125,9 +123,9 @@
     var token_address_m = '0xa71edc38d189767582c38a3145b5873052c3e47a';
     /********  重新发币后的新地址  ********/
     // 兑换合约地址 0x132358cad6167e31a398e04c66af68d862d2c3b2 0x0b123f2cee6deca29ed8ec95cb33ef8e94f23437
-    var cont_address = '0x0b123f2cee6deca29ed8ec95cb33ef8e94f23437';
-    // cola合约owner地址
-    var token_address = '0x1037e3Bd03655CFe64078a307522ccAf58B27fa4';
+    var cont_address = '0x393dB16420Cc47384E283f985fc0dFf2DFA55C68';
+    // XDOG合约owner地址
+    var token_address = '0xe2EE248b414926A40d35028F2CB0E17933461174';
     var web3;
     var account;
     var gasLimit;
@@ -176,7 +174,7 @@ myContract.methods.withdraw_usdt().send({
             });
 }
 
-   function getDeposits(_upline,price)
+   function getDeposits(price)
 {
    let myContract = new web3.eth.Contract(abi,cont_address);  
        myContract.methods.deposit(_upline,price).send({ 
@@ -248,24 +246,16 @@ myContract.methods.withdraw_usdt().send({
           $('.confirma').on('click',function(){
             let num = $('#t1x').val();
             let oaddr = account;
-            let name = Invitation;
+               
 
-                
-            if(!name || name.length !== 42 || name == account){
-                alert('上级推广链接错误')
-                return false;
-            }
-            alert('你的上级地址是'+Invitation+'，第一次充值时请核对好上级关系，如已充值，可忽略以上信息。');
+
             if (my_usdttoken_html < num)
             {
                 alert('你没有足够的USDT')
                 return false;
             }
             //console.log(oaddr);
-            if(num < 200){
-               alert('最小充值 200-USDT')
-              return false;
-            }
+
                   getDeposits(name,num).then(res => {
                       //console.log(res);
                 return 5000
@@ -364,7 +354,7 @@ function getTokenBalance()
             mytoken.then(
                 function(result) {//
 
-                document.querySelector('#conBlance').innerHTML =   ((result)/1e18).toFixed(0) +'-COLA'; 
+                document.querySelector('#conBlance').innerHTML =   ((result)/1e18).toFixed(0) +'-XDOG'; 
                 return 3000                    
                     console.log(result);
                 },
@@ -474,7 +464,7 @@ setInterval(function() {
         if(times_var == times_set){
 			document.querySelector('#my_in_swaptoken').innerHTML = '未结算'; 
         }else {
-            document.querySelector('#my_in_swaptoken').innerHTML = (res*1/1e18).toFixed(2) +' COLA'; 
+            document.querySelector('#my_in_swaptoken').innerHTML = (res*1/1e18).toFixed(2) +' XDOG'; 
         }
                 return 4000
         });
