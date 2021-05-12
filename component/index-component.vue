@@ -2,7 +2,7 @@
     <div class="main">
         <div class="head">
             <div class="flex">
-                <img class="logo" src="../img/logo@1x.png" alt="">
+                <img class="logo" src="img/logo@1x.png" alt="">
                 <ul class="tab">
                   <li class='tab0' @click="goHome">首页</li>  
                   <li @click="handleClick">资金池</li>  
