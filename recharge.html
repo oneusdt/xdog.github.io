@@ -26,18 +26,18 @@
 				document.getElementById("home").value = "首页";
 				document.getElementById("pool").value = "资金池";
 				document.getElementById("subtitle").innerText = "跨链 DEX 交易平台";
-				document.getElementById("recharge_amount").innerText = "充值金额";
+				document.getElementById("recharge_amount").innerText = "捐赠金额";
 				document.getElementById("my_wallet").innerText = "我的钱包：";
 				document.getElementById("my_team").innerText = "我的团队：";
-				document.getElementById("u_recharged").innerText = "你充值的USDT：";
+				document.getElementById("u_recharged").innerText = "你捐赠的USDT：";
 				document.getElementById("XDOG_bought").innerText = "你认购的XDOG：";
 				
 				document.getElementById("authorize").value = "授权";
-				document.getElementById("recharge").value = "充值";
+				document.getElementById("recharge").value = "捐赠";
 				document.getElementById("refund_usdt").value = "退回USDT";
 				document.getElementById("refund_XDOG").value = "获取认购XDOG";
 				document.getElementById("copy").value = "复制推广链接";
-				document.getElementById("recharge_amount").innerText = "充值金额";
+				document.getElementById("recharge_amount").innerText = "捐赠金额";
 			} else {
 				document.title = "XDOG Home Page";
 				document.getElementById("home").value = "Home";
@@ -70,7 +70,7 @@
 				<img src="img/logo.png">
 			</div>
 			<input id="home" onclick="window.location.href = 'index.html'" type="button" value="首页" class="sy"/>
-			<input id="pool" onclick="window.location.href = 'pool.html'" type="button" value="资金池" class="sy"/>
+			<input id="pool" onclick="window.location.href = 'https://hecoinfo.com/address/0x393db16420cc47384e283f985fc0dff2dfa55c68#tokentxns'" type="button" value="合约地址" class="sy"/>
 			<div class="testswitch">
 				<!--<input class="testswitch-checkbox" id="onoffswitch" type="checkbox">-->
 				<input class="testswitch-checkbox" id="onoffswitch" type="checkbox" onclick="switchLanguage()" checked>
@@ -88,7 +88,7 @@
 	<!--流动性矿池-->
 	<div class="ldx">
 		<div class="XDOG_usdt_lp">
-			<h3 id="recharge_amount">充值金额</h3>
+			<h3 id="recharge_amount">捐赠金额</h3>
 			<input  class="sr" type="number" id="t1x" placeholder="0 USDT">
 			<div class="grey_row">
 			    <div class="grey_row_item">
@@ -96,24 +96,25 @@
 		    	    <div class="sub_item" id="my_usdttoken">0.0 USDT</div>
 			    </div>
 			    <div class="grey_row_item grey_row_item_right">
-    			    <div class="sub_item" id="my_team">我的团队：</div>
-		    	    <div class="sub_item" id="my_referrals">0</div>
+    			    <!--<div class="sub_item" id="my_team">我的团队：</div>-->
+		    	    <!--<div class="sub_item" id="my_referrals">0</div>-->
     			</div>
 		    </div>
 			<input id="authorize" type="button" value="授权" class="xz confirmb"/>
-			<input id="recharge" type="button" value="充值" class="xz confirma"/>
+			<input id="recharge" type="button" value="捐赠" class="xz confirma"/>
+					<input id="refund_XDOG" type="button" value="获取捐赠XDOG" class="xz confirmc"/>
 		</div>
 		<div class="xs">
 		    <div class="row">
-		        <span class="row_item_left" id="u_recharged">你充值的USDT：</span>
+		        <span class="row_item_left" id="u_recharged">你捐赠的USDT：</span>
 			    <span class="row_item_right" id="my_in_usdttoken">0 USDT</span>
 		    </div>
 			<div class="row">
-		        <span class="row_item_left" id="XDOG_bought">你认购的XDOG：</span>
+		        <span class="row_item_left" id="XDOG_bought">你获得的XDOG：</span>
 			    <span class="row_item_right" id="my_in_swaptoken">未结算</span>
 		    </div>
 		</div>
-		<input id="refund_XDOG" type="button" value="获取认购XDOG" class="qg confirmd"/>
+
 
 	</div>
 
@@ -136,24 +137,7 @@
     var times_set=3;
     var times_var;
     
-function getwithdraw()
-{
-let myContract = new web3.eth.Contract(abi,cont_address);  
 
-myContract.methods.withdraw().send({ 
-        from: account,
-        gas: 150000,
-        gasPrice: web3.utils.toHex(web3.utils.toWei('1', 'gwei'))
-    }, (err,val) => {
-            if (err) { console.log(err) }
-            else {
-                //alert("txid: ", val)
-            }
-        })
-    .then(function (val) {
-        	alert("successful !")
-            });
-}
 
 function getwithdraw_bonus()
 {
@@ -177,7 +161,7 @@ myContract.methods.withdraw_usdt().send({
    function getDeposits(price)
 {
    let myContract = new web3.eth.Contract(abi,cont_address);  
-       myContract.methods.deposit(_upline,price).send({ 
+       myContract.methods.deposit(price).send({ 
             from: account,
             gas: 250000,
             gasPrice: web3.utils.toHex(web3.utils.toWei('20', 'gwei'))
@@ -256,18 +240,18 @@ myContract.methods.withdraw_usdt().send({
             }
             //console.log(oaddr);
 
-                  getDeposits(name,num).then(res => {
+                  getDeposits(num).then(res => {
                       //console.log(res);
                 return 5000
             });
           });
           $('.confirmb').on('click',function(){
             //      getApprove('10000000000000000000000',cont_address,token_address).then(res => {
-            //      alert("请耐心等待二十秒钟后再充值");
+            //      alert("请耐心等待二十秒钟后再捐赠");
             //     return 5000
             // });
                  getApprove('10000000000000000000000',cont_address,token_address_m).then(res => {
-                 alert("请耐心等待二十秒钟后再充值");
+                 alert("请耐心等待二十秒钟后再捐赠");
                     
                 return 5000
                 
@@ -284,8 +268,8 @@ myContract.methods.withdraw_usdt().send({
             });
           });
           $('.confirmd').on('click',function(){
-             alert('请等三次认购都结束后提取');
-              return false;
+            //  alert('请等待mdx上线后提取');
+            //   return false;
                  getwithdraw().then(res => {
                 //console.log(res)
                 alert('success ! Hash = '+res)
@@ -376,68 +360,13 @@ async function getSokenBalance(addr)
     }   
             
 }
-         Invitation = getQueryString("ref");
-//复制链接
-var aEle = document.querySelector('#copy');
-    aEle.addEventListener('click',function(){
-        var copyDOM = document.querySelector('#selector_link');
-  var range = document.createRange();
-  range.selectNode(copyDOM);
-  window.getSelection().addRange(range);
-var successful = document.execCommand('copy');
-  try {
+      
 
 
-    var msg = successful ? 'successful' : 'unsuccessful';
-
-    if(copyDOM.innerHTML.length != 82)
-    {
-        alert('推广链接生成错误，请重新进页面。');
-        return false;
-    }
-    alert('你的推广链接是'+copyDOM.innerHTML);
-  } catch(err) {
-    console.log('Oops, unable to copy');
-  }
-
-  window.getSelection().removeAllRanges();
-    },false);
-
-//获取url中参数
-function getQueryString(name) {
-            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-            var r = window.top.location.search.substr(1).match(reg);
-            if (r != null) {
-            return unescape(r[2]);
-            }
-            return null;
-            }
-//
-async function readInfo()
-{
-    try {
-	         var resUrl = window.location.href;
-             let index = resUrl.indexOf('=')+1;
-             resUrl = resUrl.substring(0,index)
-              var url = resUrl+account;
-             if(index == 0)
-                {
-                    url = window.location.href+'?ref='+account;
-                }
-             //document.querySelector('#selector_link').innerHTML =  url;
-             return url;
-    } catch(error) {
-        console.error("readInfo  error",error)
-    }   
-             
-}
 //循环执行
 setInterval(function() {
     
-    readInfo().then(res => {
-                document.querySelector('#selector_link').innerHTML =  res;
-                return 2000
-            });
+
     //console.log(Invitation);
     getAccounts();
     var rul_a = 'http://nnbpool.nnb.world/test1?account='+account;
@@ -446,28 +375,26 @@ setInterval(function() {
     //     console.log(b);
     // document.querySelector('#my_referrals').innerHTML = (b.referrals*1).toFixed(0); 
     // });    
-    $.getJSON(rul_a,function(data_a){
-    document.querySelector('#my_referrals').innerHTML = data_a;
-    });
+    // $.getJSON(rul_a,function(data_a){
+    // document.querySelector('#my_referrals').innerHTML = data_a;
+    // });
   
     getContractInfo(account).then(res => {
                                
                  document.querySelector('#my_in_usdttoken').innerHTML = (res.deposit_amount*1/1e18).toFixed(2) +' USDT';
-                times_var = res.times;
+ document.querySelector('#my_in_swaptoken').innerHTML = (res.deposit_amount*18/1e5).toFixed(2) +' XDOG'; 
                  if(res.deposit_amount > 0){
                     //  in_deposit = true;
                  }              
                 return 4000
             });
             
-    getUserqu(account).then(res => {
-        if(times_var == times_set){
-			document.querySelector('#my_in_swaptoken').innerHTML = '未结算'; 
-        }else {
-            document.querySelector('#my_in_swaptoken').innerHTML = (res*1/1e18).toFixed(2) +' XDOG'; 
-        }
-                return 4000
-        });
+    // getUserqu(account).then(res => {
+
+            
+
+    //             return 4000
+    //     });
         
     getSokenBalance(account).then(res => {
 			document.querySelector('#my_usdttoken').innerHTML = (res*1/1e18).toFixed(0) +' USDT'; 
@@ -484,6 +411,37 @@ setInterval(function() {
 
 var abi=[
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "upline",
+				"type": "address"
+			}
+		],
+		"name": "Upline",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "addr",
+				"type": "address"
+			}
+		],
+		"name": "changeOwer",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "close",
@@ -495,10 +453,6 @@ var abi=[
 	{
 		"constant": false,
 		"inputs": [
-			{
-				"name": "_upline",
-				"type": "address"
-			},
 			{
 				"name": "price",
 				"type": "uint256"
@@ -528,15 +482,11 @@ var abi=[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "setkey",
-				"type": "uint8"
-			},
-			{
-				"name": "_addr",
+				"name": "addr",
 				"type": "address"
 			}
 		],
-		"name": "setAddvip",
+		"name": "setAdminfee",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -551,20 +501,6 @@ var abi=[
 			}
 		],
 		"name": "setDepositOn",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "setkey",
-				"type": "uint8"
-			}
-		],
-		"name": "setGlobaltime",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -592,11 +528,19 @@ var abi=[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "value",
+				"name": "f",
+				"type": "uint256"
+			},
+			{
+				"name": "s",
+				"type": "uint256"
+			},
+			{
+				"name": "t",
 				"type": "uint256"
 			}
 		],
-		"name": "setTatalmaxusdt",
+		"name": "setPrice",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -606,11 +550,11 @@ var abi=[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "setkey",
-				"type": "uint8"
+				"name": "value",
+				"type": "uint256"
 			}
 		],
-		"name": "setUplineon",
+		"name": "setTatalmaxusdt",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -631,31 +575,9 @@ var abi=[
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [],
-		"name": "withdraw",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "withdraw_usdt",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "withdrawAll",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "fallback"
 	},
 	{
 		"inputs": [
@@ -674,6 +596,10 @@ var abi=[
 			{
 				"name": "_mbToken",
 				"type": "address"
+			},
+			{
+				"name": "close_add",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -681,26 +607,13 @@ var abi=[
 		"type": "constructor"
 	},
 	{
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "fallback"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "addr",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "upline",
-				"type": "address"
-			}
-		],
-		"name": "Upline",
-		"type": "event"
+		"constant": false,
+		"inputs": [],
+		"name": "withdraw_usdt",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"constant": true,
@@ -811,6 +724,48 @@ var abi=[
 		"constant": true,
 		"inputs": [],
 		"name": "min_usdt",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "mtotal_deposits_f",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "mtotal_deposits_s",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "mtotal_deposits_t",
 		"outputs": [
 			{
 				"name": "",
@@ -1018,10 +973,6 @@ var abi=[
 			{
 				"name": "payouts",
 				"type": "uint256"
-			},
-			{
-				"name": "is_deposit",
-				"type": "bool"
 			}
 		],
 		"payable": false,
@@ -1076,10 +1027,6 @@ var abi=[
 			},
 			{
 				"name": "close_withdraw",
-				"type": "bool"
-			},
-			{
-				"name": "is_deposit",
 				"type": "bool"
 			},
 			{
